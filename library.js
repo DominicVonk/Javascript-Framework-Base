@@ -3,9 +3,9 @@
  * Dominic Vonk - July 4th 2013
  * Based on the jQuery Library
  * License: Free
+ * Version 0.0.2a
  */
- 
-(function (window, undefined) {
+(function (window, extended) {
     var
     _Mimbu = window.Mimbu,
         _$ = window.$,
@@ -31,9 +31,13 @@
                 Mimbu[args] = null;
                 return Mimbu;
             },
-            version: "0.0.1a",
+            version: "0.0.2a",
             library: "Mimbu"
         };
+    
+    if (typeof extended !== "undefined") {
+        Mimbu.extends(extended);
+    }
     if (typeof module === "object" && module && typeof module.exports === "object") {
         module.exports = Mimbu;
     } else {
@@ -44,14 +48,6 @@
             });
         }
     }
-})(window);
- 
-(function ($) {
-    $.extends({
-        say: function (msg) {
-            return console.log(msg);
-        }
-    });
-})(Mimbu);
- 
+})(window, {say: function (msg) { return console.log(msg); }});
+
 $.say("hey");
